@@ -5,10 +5,10 @@ import dayjs from "dayjs"
 type Props = {
   dateKey: string
   events: EventType[]
-  balanceAnterior: number
+  previousBalance: number
 }
 
-const MonthCard = ({ dateKey, events, balanceAnterior }: Props) => {
+const MonthCard = ({ dateKey, events, previousBalance }: Props) => {
   const date = dayjs(`${dateKey}-01`)
   const monthYear = date.format("MMMM YYYY")
 
@@ -20,8 +20,8 @@ const MonthCard = ({ dateKey, events, balanceAnterior }: Props) => {
     .filter((e) => e.type === "expense")
     .reduce((acc, e) => acc + e.amount, 0)
 
-  const balanceMes = income - expense
-  const balanceGlobal = balanceAnterior + balanceMes
+  const monthBalance = income - expense
+  const globalBalance = previousBalance + monthBalance
 
   return (
     <div className="rounded-xl overflow-hidden shadow-lg bg-white min-w-70 h-125 mx-4 flex flex-col">
@@ -51,12 +51,12 @@ const MonthCard = ({ dateKey, events, balanceAnterior }: Props) => {
 
           <div className="flex flex-row justify-between">
             <p className="font-medium text-gray-700">Monthly:</p>
-            <p className="text-gray-700">${balanceMes.toFixed(2)}</p>
+            <p className="text-gray-700">${monthBalance.toFixed(2)}</p>
           </div>
 
           <div className="flex flex-row justify-between">
             <p className="font-medium text-gray-700">Global:</p>
-            <p className="text-gray-700">${balanceGlobal.toFixed(2)}</p>
+            <p className="text-gray-700">${globalBalance.toFixed(2)}</p>
           </div>
 
       </div>

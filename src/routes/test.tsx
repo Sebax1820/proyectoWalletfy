@@ -36,7 +36,7 @@ function RouteComponent() {
               key={key}
               dateKey={key}
               events={eventsGrouped[key]}
-              balanceAnterior={previousGlobalBalance}
+              previousBalance={previousGlobalBalance}
             />
           )
 
