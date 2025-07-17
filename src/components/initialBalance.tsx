@@ -1,4 +1,5 @@
 import { NumberInput } from '@mantine/core';
+import { Link } from '@tanstack/react-router';
 
 
 export function InitialBalance() {
@@ -18,7 +19,7 @@ export function InitialBalance() {
                 </div>
             </div>
             <div className='py-1.25 px-3 ml-4 bg-violet-500 text-white rounded-md shadow-lg hover:bg-violet-600'>
-                <a href='/'>Add Event</a>
+                <Link to='/'>Add Event</Link>
             </div>
             
         </div>

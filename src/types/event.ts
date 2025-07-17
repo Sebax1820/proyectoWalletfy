@@ -17,8 +17,8 @@ export const CreateEventSchema = EventSchema.omit({
 
 export type CreateEventType = z.infer<typeof CreateEventSchema>
 
-export const UpdateCandidateSchema = EventSchema.partial().extend({
+export const UpdateEventSchema = EventSchema.partial().extend({
     id: z.uuid(),
 })
 
-export type UpdateCandidateType = z.infer<typeof UpdateCandidateSchema>
+export type UpdateEventType = z.infer<typeof UpdateEventSchema>

@@ -11,6 +11,11 @@ import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import '@mantine/core/styles.css'
+import '@mantine/dates/styles.css';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
 
 import reportWebVitals from './reportWebVitals.ts'
 
