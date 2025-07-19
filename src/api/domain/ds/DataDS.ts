@@ -6,6 +6,8 @@ import type {
 
 abstract class DataDS {
 
+  abstract getAllEvents(): Promise<Array<EventType>>
+
   abstract getEventById(id: string): Promise<EventType>
 
   abstract saveEvent(event: CreateEventType): Promise<boolean>

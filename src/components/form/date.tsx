@@ -1,38 +1,30 @@
-// import { useState } from 'react';
-// import { DateInput } from '@mantine/dates';
 
-// export function DateSelect() {
-//   const [value, setValue] = useState<string | null>(null);
-//   return (
-//     <DateInput
-//       value={value}
-//       onChange={setValue}
-//       label="Date input"
-//       placeholder="dd/mm/yyyy"
-//     />
-//   );
-// }
+import dayjs from 'dayjs'
 
-import dayjs from 'dayjs';
-import { DateInput } from '@mantine/dates';
-import type { DateInputProps } from '@mantine/dates';
+type Props = {
+  value: Date
+  onChange: (val: Date) => void
+  label?: string
+  placeholder?: string
+  
+}
 
-const dateParser: DateInputProps['dateParser'] = (input) => {
-  if (input === 'WW2') {
-    return '1939-09-01';
-  }
-
-  return dayjs(input, 'DD/MM/YYYY').format('YYYY-MM-DD');
-};
-
-export function DateSelect() {
+export function DateInput({ value, onChange, label = "Date", placeholder = "Select a date" }: Props) {
   return (
-
-    <DateInput
-    dateParser={dateParser}
-    valueFormat="DD/MM/YYYY"
-    label="Date"
-    placeholder="dd/mm/yyyy"
-    />
-  );
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <input
+        type="date"
+        className="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+        placeholder={placeholder}
+        value={dayjs(value).format('YYYY-MM-DD')}
+        onChange={(e) => {
+          const selectedDate = new Date(e.target.value)
+          if (!isNaN(selectedDate.getTime())) {
+            onChange(selectedDate)
+          }
+        }}
+      />
+    </div>
+  )
 }

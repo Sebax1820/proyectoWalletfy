@@ -10,6 +10,24 @@ const EVENTS_KEY = 'events'
 const sleep = (ms = 500) => new Promise((resolve) => setTimeout(resolve, ms))
 
 class LocalStorageDS implements DataDS {
+
+  async getAllEvents(): Promise<EventType[]> {
+    try {
+      await sleep()
+
+      const raw = localStorage.getItem(EVENTS_KEY) ?? '[]'
+      const events = JSON.parse(raw) as EventType[]
+
+      return events.map((event) => ({
+        ...event,
+        date: new Date(event.date),
+      }))
+    
+    } catch (error) {
+      console.error(error)
+      throw new Error('Error loading events')
+    }
+  } 
   async getEventById(id: string): Promise<EventType> {
     try {
       await sleep()

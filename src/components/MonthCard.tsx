@@ -35,9 +35,10 @@ const MonthCard = ({ dateKey, events, previousBalance }: Props) => {
             <Event key={event.id} data={event} />
           ))}
 
-          </div>
         </div>
-        <div className="mt-auto bg-white flex flex-col px-4 pb-4">
+      </div>
+
+      <div className="mt-auto bg-white flex flex-col px-4 pb-4">
 
           <div className="flex flex-row justify-between">
             <p className="font-medium text-gray-700">Income:</p> 

@@ -45,7 +45,9 @@ if (rootElement && !rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <Mantine.Provider>
+        <TanstackQuery.Provider>
           <RouterProvider router={router} />
+        </TanstackQuery.Provider>
       </Mantine.Provider>
     </StrictMode>,
   )

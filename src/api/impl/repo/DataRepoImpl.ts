@@ -5,6 +5,10 @@ import type { CreateEventType, EventType, UpdateEventType } from '@/types/event'
 class DataRepoImpl {
   constructor(private data: DataDS) {}
 
+  async getAllEvents(): Promise<Array<EventType>> {
+    return await this.data.getAllEvents()
+  }
+
   async getEventById(id: string): Promise<EventType> {
     return await this.data.getEventById(id)
   }
