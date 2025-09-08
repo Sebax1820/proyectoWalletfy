@@ -25,7 +25,6 @@ export default function ChatInterface() {
 
   const [llmManager, setLlmManager] = useState<LLMWebLLMManager | null>(null)
 
-  // 📌 Parámetros configurables
   const [params, setParams] = useState<Params>({
     temperature: CONFIG.webLLM.temperature,
     top_p: CONFIG.webLLM.topP,
@@ -33,14 +32,12 @@ export default function ChatInterface() {
     reasoning_effort: 'medium',
   })
 
-  // 📌 Referencia al textarea
   const textareaRef = useRef<HTMLTextAreaElement | null>(null)
 
   const lineHeight = 20
   const maxLines = 6
   const maxHeight = lineHeight * maxLines
 
-  // 📌 Auto-ajuste con límite
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto'
@@ -50,7 +47,6 @@ export default function ChatInterface() {
     }
   }, [inputValue])
 
-  // 📌 Carga y liberación automática del modelo
   useEffect(() => {
     const manager = new LLMWebLLMManager(CONFIG.webLLM)
     setLlmManager(manager)
@@ -61,7 +57,6 @@ export default function ChatInterface() {
     }
   }, [])
 
-  // 📌 Enviar mensaje con streaming
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!inputValue.trim() || !llmManager) return
@@ -95,7 +90,6 @@ export default function ChatInterface() {
         ])
       }
 
-      // Reemplazar el temporal por definitivo
       setMessages((prev) => [
         ...prev.filter((m) => m.id !== tempId),
         {
@@ -124,7 +118,6 @@ export default function ChatInterface() {
     setMessages([])
   }
 
-  // 📌 Manejo de cambios en config
   const handleParamChange = (field: keyof Params, value: any) => {
     setParams((prev) => {
       const newParams = { ...prev }
